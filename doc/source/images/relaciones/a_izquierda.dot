@@ -1,0 +1,7 @@
+digraph G
+{
+    graph [nodesep="0.1", rankdir=LR];
+    node [shape=box, fontsize="10", fontcolor=grey, color=white]
+    edge [fontsize="10"]
+    A -> B [arrowhead=none, arrowtail=normal]
+}
