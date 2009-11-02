@@ -1,0 +1,116 @@
+$def with (code, hostname, error="")
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="static/style.css"> 
+    <script src="static/jquery.js" type="text/javascript" language="text/javascript"></script>
+    <script src="static/tabby.js" type="text/javascript" language="text/javascript"></script>
+    <script src="static/custom.js" type="text/javascript" language="text/javascript"></script>
+    <script src="static/resizer.js" type="text/javascript" language="text/javascript"></script>
+
+    <!--
+    <script src="static/ui.core.min.js" type="text/javascript" language="text/javascript"></script>
+    <script src="static/ui.sortable.min.js" type="text/javascript" language="text/javascript"></script>
+    -->
+
+    <title>Quick Class Diagrams</title>
+
+
+</head>
+
+<body>
+
+<div id='main'>
+
+<div id='header'>
+    <div id='logo'></div>
+    <div id='title_block'>
+        <h1>Quick Class Diagrams</h1>
+        <p>
+        Una manera sencilla de construir sus diagramas de clase.
+    </div>
+</div>
+
+<div id='body_page'>
+
+<div class="rbroundbox">
+	<div class="rbtop"><div></div></div>
+		<div class="rbcontent">
+                    <p>Esta es una versión de prueba del
+                    programa quickdiagrams para la web. 
+
+                    <p>
+                    Provisoriamente
+                    mantenemos <a
+                        href="/static/doc/"
+                        >la documentación</a> en otra sección.
+                    
+                    <p>
+                    Por
+                    favor visite el 
+                    <a href="http://code.google.com/p/quickdiagrams/">sitio del proyecto</a>
+                    para obtener mas detalles.
+
+
+                    </p>
+		</div>
+	<div class="rbbot"><div></div></div>
+</div>
+
+
+<div id='input_area'>
+    <h1>Modelo de clases</h1>
+
+    <form onSubmit="return false">
+        <textarea id="diagram_code" rows="20" cols="50">$code</textarea>
+
+<p>
+    <button id='draw'>Dibujar</button>
+    <button id='save'>Guardar y publicar</button>
+
+
+<div id='save_message'>
+
+</div>
+
+$if error:
+    <div id='error_message'>
+        $error
+    </div>
+
+
+
+<div id='tip'>
+    Puede utilizar la tecla <em>TAB</em> o . <em>(punto)</em> para identar el texto.
+</div>
+
+    </form>
+</div>
+
+<div id='preview_area'>
+    <h1>Vista preliminar</h1>
+
+    <div id='placeholder'>
+    </div>
+
+</div>
+
+</div>
+
+
+<div id='foot'>
+    <a href='http://creativecommons.org/licenses/GPL/2.0/'><img
+        style="border: 0px;"
+        src='static/gpl.png' width=88 height=62 alt=""></a>
+    <p>
+    <a href='http://code.google.com/p/quickdiagrams/'>QuickDiagrams</a>
+</div>
+
+</div>
+
+
+</body>
+</html>
