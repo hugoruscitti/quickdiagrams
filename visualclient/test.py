@@ -12,6 +12,7 @@ import gtkcodebuffer
 import drawing_thread
 import Queue
 import gobject
+import pango
 
 
 gobject.threads_init()
@@ -50,23 +51,31 @@ class Application:
     def _create_buffer(self):
         emph  = gtkcodebuffer.String(r"\*", r"\*", style="datatype")
         emph2 = gtkcodebuffer.String(r"\*\*", r"\*\*", style="datatype")
-        code  = gtkcodebuffer.String(r'`', r'`', style="special")
-        head  = gtkcodebuffer.Pattern(r"^#+.+$", style="keyword")
+        #code  = gtkcodebuffer.Pattern(r"asd", style="mark2")
         list1 = gtkcodebuffer.Pattern(r"^(- ).+$", style="comment", group=1)
-        list2 = gtkcodebuffer.Pattern(r"^(\d+\. ).+$", style="comment", group=1)
+        list2 = gtkcodebuffer.Pattern(r"^\s*-+", style="comment")
+        head  = gtkcodebuffer.Pattern(r"^\s*[A-Z][a-z]*", style="keyword")
          
-        lang = gtkcodebuffer.LanguageDefinition([emph, emph2, code, head, list1, list2])
+        lang = gtkcodebuffer.LanguageDefinition([emph, emph2, head, list1, list2])
 
         self.buffer = gtkcodebuffer.CodeBuffer(lang=lang)
         self.view.textview.set_buffer(self.buffer)
-        self.set_model_text("""Foro
-    nombre
-    mensajes
-    ----
-    publicar
 
-    ForoPrivado
-        permisos""")
+        pl = self.view.textview.create_pango_layout(' '*4)
+        width, height = pl.get_pixel_size()
+
+        ta = pango.TabArray(1, True)
+        ta.set_tab(0, pango.TAB_LEFT, width)
+        self.view.textview.set_tabs(ta)
+
+        self.set_model_text("""Foro
+	nombre
+	mensajes
+	----
+	publicar
+	
+	ForoPrivado
+		permisos""")
 
     def request_draw_to_drawing_thread(self):
         self.queue.put(self.draw_diagram)
