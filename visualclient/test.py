@@ -75,7 +75,9 @@ class Application:
 	publicar
 	
 	ForoPrivado
-		permisos""")
+		permisos
+""")
+        self.view.textview.grab_focus()
 
     def request_draw_to_drawing_thread(self):
         self.queue.put(self.draw_diagram)
