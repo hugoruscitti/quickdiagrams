@@ -36,30 +36,12 @@ $def with (code, hostname, error="")
 
 <div id='body_page'>
 
-<div class="rbroundbox">
-	<div class="rbtop"><div></div></div>
-		<div class="rbcontent">
-                    <p>Esta es una versión de prueba del
-                    programa quickdiagrams para la web. 
-
-                    <p>
-                    Provisoriamente
-                    mantenemos <a
-                        href="/static/doc/"
-                        >la documentación</a> en otra sección.
-                    
-                    <p>
-                    Por
-                    favor visite el 
-                    <a href="http://code.google.com/p/quickdiagrams/">sitio del proyecto</a>
-                    para obtener mas detalles.
 
 
-                    </p>
-		</div>
-	<div class="rbbot"><div></div></div>
-</div>
+<table>
+    <tr>
 
+        <td>
 
 <div id='input_area'>
     <h1>Modelo de clases</h1>
@@ -87,8 +69,16 @@ $if error:
     Puede utilizar la tecla <em>TAB</em> o . <em>(punto)</em> para identar el texto.
 </div>
 
+<div id='loading_image'>
+    <img style="border: 0px;" src='static/loading_image.gif' width=32 height=32 alt=""/>
+</div>
+
+
     </form>
 </div>
+        </td>
+
+        <td>
 
 <div id='preview_area'>
     <h1>Vista preliminar</h1>
@@ -97,6 +87,40 @@ $if error:
     </div>
 
 </div>
+        </td>
+
+<td>
+
+<div class="rbroundbox">
+	<div class="rbtop"><div></div></div>
+		<div class="rbcontent">
+                    <p>Esta es una versión de prueba del
+                    programa quickdiagrams para la web. 
+
+                    <p>
+                    Provisoriamente
+                    mantenemos <a
+                        href="/static/doc/"
+                        >la documentación</a> en otra sección.
+                    
+                    <p>
+                    Por
+                    favor visite el 
+                    <a href="http://code.google.com/p/quickdiagrams/">sitio del proyecto</a>
+                    para obtener mas detalles.
+
+
+                    </p>
+		</div>
+	<div class="rbbot"><div></div></div>
+</div>
+</td>
+
+
+    </tr>
+</table>
+
+
 
 </div>
 

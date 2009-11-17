@@ -70,6 +70,9 @@ class DrawCommand:
         file_output = "static/tmp/%d_%s.png" %(t, uuid.uuid4())
         full_path = os.path.join(this_dir, file_output)
         diagram.save(full_path, 'png', disable_output=True)
+
+        time.sleep(2)
+
         #self.remove_old_files()
 
         return file_output

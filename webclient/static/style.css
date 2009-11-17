@@ -24,13 +24,13 @@ div#body_page
 
     div#sections
     {
-        float: right;
+        /* float: right; */
     }
 
     div#input_area
     {
         height: 100%;
-        float: left;
+        /* float: left; */
         padding: 1em;
     }
 
@@ -42,13 +42,13 @@ div#body_page
         div#input_area textarea
         {
             border: 2px solid gray;
-            width: 400px;
+            width: 100%;
         }
 
     div#preview_area
     {
-        height: 100%;
-        float: left;
+        /* height: 100%; */
+        /* float: left; */
         padding: 1em;
     }
 
@@ -179,6 +179,7 @@ font-size: 1px;
 div#tip
 {
     margin-top: 1em;
+    margin-bottom: 1em;
     font-size: 10pt;
     color: gray;
 }
@@ -199,4 +200,19 @@ div#error_message
     border: 1px solid rgb(200, 50, 50);
     padding: 4px;
     font-size: small;
+}
+
+div#loading_image
+{
+    border: 1px solid black;
+    width: 32px;
+    height: 32px;
+    display: none;
+}
+
+
+td
+{
+    border: 2px solid red;
+    vertical-align: top;
 }
