@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import yapgvb
 import parser
+import pac_parser
 
 class Diagram:
     """Representa un diagrama completo."""
@@ -26,10 +27,18 @@ class Diagram:
     def read(self, input_file_name):
         "Lee un modelo de clases desde un archivo de texto."
 
-        file_handler = open(input_file_name, 'rt')
+        if self._is_pac_filename(input_file_name):
+            file_handler = pac_parser.get_fakefile(input_file_name)
+        else:
+            file_handler = open(input_file_name, 'rt')
+
         filecontent = file_handler.readlines()
         self.read_from_string(filecontent)
         file_handler.close()
+
+    def _is_pac_filename(self, input_file_name):
+        "Informa si un nombre de archivo parece un archivo .pac"
+        return input_file_name.lower().endswith(".pac")
 
     def read_from_string(self, filecontent):
         "Lee un modelo de clases desde una lista de cadenas."
