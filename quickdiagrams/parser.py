@@ -74,8 +74,12 @@ class Relation:
             self.arrowtail = "odiamond"
         elif value == "<>-":
             self.arrowhead = "odiamond"
+        elif value == "<*>-":
+            self.arrowhead = "diamond"
         elif value == "-<>":
             self.arrowtail = "odiamond"
+        elif value == "-<*>":
+            self.arrowtail = "diamond"
         else:
             self.description = value
 
