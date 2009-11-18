@@ -99,6 +99,8 @@ class Model:
         
         if self._it_seems_like_a_method(value):
             self.methods.append(value)
+        elif self._is_invisible(value):
+            self.attributes.append("")
         elif self._is_contour(value):
             self.are_in_method_area = True
         else:
@@ -112,6 +114,9 @@ class Model:
         """Indica si la palabra representa un nombre de metodo."""
         if ':' in word or '(' in word:
             return True
+
+    def _is_invisible(self, line):
+        return re.search("^\s*_$", line)
 
     def _is_contour(self, line):
         return re.search("^\s*--+$", line)
