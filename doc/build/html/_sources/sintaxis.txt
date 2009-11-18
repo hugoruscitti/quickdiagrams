@@ -51,3 +51,33 @@ Veamos un ejemplo, la siguiente clase tiene dos atributos y dos métodos::
         titulo
         inscribir_usuario(nombre)
 
+
+Clases vacías
+-------------
+
+Si quiere crear clases sin especificar ninguno de sus atributos, algo
+útil cuando quiere obtener un diagrama de diseño inicial, puede utilizar
+el guión bajo como atributo 'transparente'::
+
+    ClaseSinContenido
+        _
+
+    OtraClaseVacia
+        _
+
+        SubclaseVacia
+            _
+
+Otra utilidad de los guiones, es que puedas utilizarlos para agrupar
+atributos de los objetos produciendo espacios. Una idea horrible, pero
+que tal vez quieras utilizar::
+
+    UnaClase
+        atributo_1
+        atributo_2
+        _
+        atributos_separados_1
+        atributos_separados_2
+
+        metodo()
+

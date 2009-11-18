@@ -90,6 +90,33 @@ hace falta separar con guiones variables y métodos.</p>
     inscribir_usuario(nombre)</pre>
 </div>
 </div>
+<div class="section" id="clases-vacias">
+<h2>Clases vacías</h2>
+<p>Si quiere crear clases sin especificar ninguno de sus atributos, algo
+útil cuando quiere obtener un diagrama de diseño inicial, puede utilizar
+el guión bajo como atributo &#8216;transparente&#8217;:</p>
+<div class="highlight-python"><pre>ClaseSinContenido
+    _
+
+OtraClaseVacia
+    _
+
+    SubclaseVacia
+        _</pre>
+</div>
+<p>Otra utilidad de los guiones, es que puedas utilizarlos para agrupar
+atributos de los objetos produciendo espacios. Una idea horrible, pero
+que tal vez quieras utilizar:</p>
+<div class="highlight-python"><pre>UnaClase
+    atributo_1
+    atributo_2
+    _
+    atributos_separados_1
+    atributos_separados_2
+
+    metodo()</pre>
+</div>
+</div>
 </div>
 
 
@@ -103,6 +130,7 @@ hace falta separar con guiones variables y métodos.</p>
 <li><a class="reference external" href="">Sintaxis</a><ul>
 <li><a class="reference external" href="#subclases">Subclases</a></li>
 <li><a class="reference external" href="#metodos-implicitos">Métodos implícitos</a></li>
+<li><a class="reference external" href="#clases-vacias">Clases vacías</a></li>
 </ul>
 </li>
 </ul>
