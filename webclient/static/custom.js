@@ -1,10 +1,11 @@
 /* muestra una imagen de progreso mientras se genera el diagrama. */
 function show_running_message()
 {
-    $("#placeholder").css("display", "block");
+    //$("#placeholder").css("display", "block");
     //$("#placeholder").html("<div class='wait'></div>");
 
     $("#loading_image").css("display", "block");
+    $("#loading_image_small").css("display", "inline");
 
     $("button[id='draw']").attr("readonly", true);
     $("button[id='draw']").attr("disabled", true);
@@ -36,8 +37,12 @@ function on_save__clicked()
 function on_draw_ajax__done(data)
 {
     $("#save_message").fadeOut(500);
-    $("#placeholder").html("<img src='" + data + "'/>");
+
+    // TODO: DESCOMENTAR.
+    // $("#placeholder").html("<img src='" + data + "'/>");
+    $("#image_in_placeholder").attr('src', data);
     $("#loading_image").css("display", "none");
+    $("#loading_image_small").css("display", "none");
 
     $("button[id='draw']").attr("readonly", false);
     $("button[id='draw']").attr("disabled", false);

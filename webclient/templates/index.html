@@ -53,6 +53,10 @@ $def with (code, hostname, error="")
     <button id='draw'>Dibujar</button>
     <button id='save'>Guardar y publicar</button>
 
+<span id='loading_image_small'>
+    <img style="border: 0px;" src='static/loading_image_small.gif' width=16 height=16 alt=""/>
+</span>
+
 
 <div id='save_message'>
 
@@ -69,9 +73,6 @@ $if error:
     Puede utilizar la tecla <em>TAB</em> o . <em>(punto)</em> para identar el texto.
 </div>
 
-<div id='loading_image'>
-    <img style="border: 0px;" src='static/loading_image.gif' width=32 height=32 alt=""/>
-</div>
 
 
     </form>
@@ -84,7 +85,14 @@ $if error:
     <h1>Vista preliminar</h1>
 
     <div id='placeholder'>
+
+<div id='loading_image'>
+    <img style="border: 0px;" src='static/loading_image.gif' width=32 height=32 alt=""/>
+</div>
+
+        <img id='image_in_placeholder' />
     </div>
+
 
 </div>
         </td>
