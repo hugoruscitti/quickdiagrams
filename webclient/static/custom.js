@@ -5,7 +5,7 @@ function show_running_message()
     //$("#placeholder").html("<div class='wait'></div>");
 
     $("#loading_image").css("display", "block");
-    $("#loading_image_small").css("display", "inline");
+    $("#procesing").css("display", "inline");
 
     $("button[id='draw']").attr("readonly", true);
     $("button[id='draw']").attr("disabled", true);
@@ -42,7 +42,7 @@ function on_draw_ajax__done(data)
     // $("#placeholder").html("<img src='" + data + "'/>");
     $("#image_in_placeholder").attr('src', data);
     $("#loading_image").css("display", "none");
-    $("#loading_image_small").css("display", "none");
+    $("#procesing").css("display", "none");
 
     $("button[id='draw']").attr("readonly", false);
     $("button[id='draw']").attr("disabled", false);

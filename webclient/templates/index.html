@@ -11,11 +11,6 @@ $def with (code, hostname, error="")
     <script src="static/custom.js" type="text/javascript" language="text/javascript"></script>
     <script src="static/resizer.js" type="text/javascript" language="text/javascript"></script>
 
-    <!--
-    <script src="static/ui.core.min.js" type="text/javascript" language="text/javascript"></script>
-    <script src="static/ui.sortable.min.js" type="text/javascript" language="text/javascript"></script>
-    -->
-
     <title>Quick Class Diagrams</title>
 
 
@@ -32,6 +27,12 @@ $def with (code, hostname, error="")
         <p>
         Una manera sencilla de construir sus diagramas de clase.
     </div>
+    <div id="navcontainer">
+        <ul id="navlist">
+            <li><a href="/static/doc/">Documentación</a>
+            <li><a href="http://code.google.com/p/quickdiagrams/">Descarga y proyecto</a>
+        </ul>
+    </div>
 </div>
 
 <div id='body_page'>
@@ -41,7 +42,7 @@ $def with (code, hostname, error="")
 <table>
     <tr>
 
-        <td>
+        <td width="500px">
 
 <div id='input_area'>
     <h1>Modelo de clases</h1>
@@ -53,8 +54,8 @@ $def with (code, hostname, error="")
     <button id='draw'>Dibujar</button>
     <button id='save'>Guardar y publicar</button>
 
-<span id='loading_image_small'>
-    <img style="border: 0px;" src='static/loading_image_small.gif' width=16 height=16 alt=""/>
+<span id='procesing'>
+    Procesando ...
 </span>
 
 
@@ -86,9 +87,9 @@ $if error:
 
     <div id='placeholder'>
 
-<div id='loading_image'>
-    <img style="border: 0px;" src='static/loading_image.gif' width=32 height=32 alt=""/>
-</div>
+        <div id='loading_image'>
+            <img style="border: 0px;" src='static/loading_image.gif' width=32 height=32 alt=""/>
+        </div>
 
         <img id='image_in_placeholder' />
     </div>
@@ -97,38 +98,9 @@ $if error:
 </div>
         </td>
 
-<td>
-
-<div class="rbroundbox">
-	<div class="rbtop"><div></div></div>
-		<div class="rbcontent">
-                    <p>Esta es una versión de prueba del
-                    programa quickdiagrams para la web. 
-
-                    <p>
-                    Provisoriamente
-                    mantenemos <a
-                        href="/static/doc/"
-                        >la documentación</a> en otra sección.
-                    
-                    <p>
-                    Por
-                    favor visite el 
-                    <a href="http://code.google.com/p/quickdiagrams/">sitio del proyecto</a>
-                    para obtener mas detalles.
-
-
-                    </p>
-		</div>
-	<div class="rbbot"><div></div></div>
-</div>
-</td>
-
 
     </tr>
 </table>
-
-
 
 </div>
 
