@@ -65,8 +65,13 @@ class Diagram:
         node.fontsize = 10
         node.fontname = "Verdana"
         node.label = model.get_content_as_string()
+        
+        if model.name:
+            name = model.name.lower()
+        else:
+            name = "??"
 
-        self.nodes[model.name.lower()] = (model.superclass, node)
+        self.nodes[name] = (model.superclass, node)
 
     def add_empty_node(self):
         "Genera un nodo indicando que el modelo está vacío."
@@ -75,7 +80,7 @@ class Diagram:
         node.shape = 'none'
         node.fontsize = 10
         node.fontname = "Verdana"
-        node.fontcolor = 'gray'
+        #node.fontcolor = 'gray'
 
     def get_node_from_name(self, name):
         """Obtiene un nodo asociado a un determinado nombre de clase.
