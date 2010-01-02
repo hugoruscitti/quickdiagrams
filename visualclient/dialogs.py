@@ -1,4 +1,5 @@
 import gtk
+import sys
 
 class SaveDialog:
 
@@ -37,7 +38,10 @@ class SaveDialog:
 
         if response == gtk.RESPONSE_OK:
             filename = self.dialog.get_filename()
-            print "closed with:", filename
+
+            if sys.platform == "win32":
+                filename = sys.path.realpath(filename)
+
             self.save_callback(filename)
         else:
             return False
