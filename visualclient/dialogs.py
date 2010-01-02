@@ -40,7 +40,7 @@ class SaveDialog:
             filename = self.dialog.get_filename()
 
             if sys.platform == "win32":
-                filename = sys.path.realpath(filename)
+                filename = '"%s"' %(filename)
 
             self.save_callback(filename)
         else:
