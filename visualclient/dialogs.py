@@ -37,6 +37,7 @@ class SaveDialog:
 
         if response == gtk.RESPONSE_OK:
             filename = self.dialog.get_filename()
+            print "closed with:", filename
             self.save_callback(filename)
         else:
             return False
