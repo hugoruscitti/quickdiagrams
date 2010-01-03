@@ -38,10 +38,6 @@ class SaveDialog:
 
         if response == gtk.RESPONSE_OK:
             filename = self.dialog.get_filename()
-
-            if sys.platform == "win32":
-                filename = '"%s"' %(filename)
-
             self.save_callback(filename)
         else:
             return False

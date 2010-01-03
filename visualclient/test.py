@@ -164,6 +164,9 @@ class Application:
         self.set_buffer_has_modified(False)
 
     def export_to(self, filename):
+        if sys.platform == "win32":
+            filename = '"%s"' %(filename)
+
         self.diagram = quickdiagrams.Diagram()
         text_model = self.get_model_text_as_list()
         self.diagram.read_from_string(text_model)

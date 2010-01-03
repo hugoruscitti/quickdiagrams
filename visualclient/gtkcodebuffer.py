@@ -34,7 +34,7 @@ from xml.sax.saxutils import unescape
 
 # defined the default styles
 DEFAULT_STYLES = {
-    'DEFAULT':      {'font': 'monospace'},
+    'DEFAULT':      {'font': 'Verdana'},
     'comment':      {'foreground': '#0000FF'},
     'preprocessor': {'foreground': '#A020F0'},
     'keyword':      {'foreground': '#A52A2A',
