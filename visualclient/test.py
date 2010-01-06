@@ -35,8 +35,7 @@ class Application:
         self._create_view(self.ui)
         self._create_buffer()
 
-        # TODO: se podria usar una cola lifo, pero python2.5 no lo tiene.
-        self.queue = Queue.Queue()
+        self.queue = Queue.LifoQueue()
         self.drawing_thread = drawing_thread.DrawingThread(self, self.queue)
         self.drawing_thread.start()
 
@@ -189,6 +188,7 @@ class Application:
             return True
 
     def kill_child_thread(self):
+        "Intenta desbloquear el hilo que lee de la cola."
         self.queue.put(None)
         self.drawing_thread.join()
 

@@ -21,25 +21,11 @@ class DrawingThread(Thread):
     def run(self):
 
         while True:
-            # Espera sin gastar recursos hasta que llegue una
-            # nueva tarea.
-
-            task = None
-
-            
-            while not self.queue.empty():
-                task = self.queue.get()        # agota la cola para quedarse 
-                                               # con la ultima tarea.
-
             task = self.queue.get()        # agota la cola para quedarse 
+
             if task:
                 task()
-            else:
-                return
-
-            self.queue.task_done()
-
-            # Descarta todas las tareas antiguas
-            while not self.queue.empty():
-                self.queue.get()
                 self.queue.task_done()
+            else:
+                # se desbloquea el programa
+                return
