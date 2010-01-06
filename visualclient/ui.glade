@@ -111,18 +111,23 @@
               <widget class="GtkScrolledWindow" id="scrolledwindow1">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
-                <property name="hscrollbar_policy">never</property>
-                <property name="vscrollbar_policy">never</property>
-                <property name="shadow_type">in</property>
+                <property name="hscrollbar_policy">automatic</property>
+                <property name="vscrollbar_policy">automatic</property>
                 <child>
-                  <widget class="GtkEventBox" id="eventbox">
+                  <widget class="GtkViewport" id="viewport1">
                     <property name="visible">True</property>
-                    <property name="above_child">True</property>
+                    <property name="resize_mode">queue</property>
                     <child>
-                      <widget class="GtkImage" id="image">
-                        <property name="width_request">200</property>
+                      <widget class="GtkEventBox" id="eventbox">
                         <property name="visible">True</property>
-                        <property name="stock">gtk-missing-image</property>
+                        <property name="above_child">True</property>
+                        <child>
+                          <widget class="GtkImage" id="image">
+                            <property name="width_request">200</property>
+                            <property name="visible">True</property>
+                            <property name="stock">gtk-missing-image</property>
+                          </widget>
+                        </child>
                       </widget>
                     </child>
                   </widget>
@@ -847,7 +852,7 @@ Public License instead of this License.  But first, please read
 &lt;http://www.gnu.org/philosophy/why-not-lgpl.html&gt;.
 </property>
     <property name="authors">Hugo Ruscitti &lt;hugoruscitti@gmail.com&gt;</property>
-    <property name="artists">Galería de íconos del proyecto GNOME - http://www.gnome.org</property>
+    <property name="artists">Galer&#xED;a de &#xED;conos del proyecto GNOME - http://www.gnome.org</property>
     <child internal-child="vbox">
       <widget class="GtkVBox" id="dialog-vbox1">
         <property name="visible">True</property>
@@ -898,7 +903,7 @@ Public License instead of this License.  But first, please read
               </packing>
             </child>
             <child>
-              <widget class="GtkVBox" id="vbox1">
+              <widget class="GtkVBox" id="vbox2">
                 <property name="visible">True</property>
                 <property name="orientation">vertical</property>
                 <child>
@@ -944,7 +949,7 @@ Public License instead of this License.  But first, please read
             </child>
             <child>
               <widget class="GtkButton" id="button2">
-                <property name="label" translatable="yes">gtk-cancel</property>
+                <property name="label">gtk-cancel</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
