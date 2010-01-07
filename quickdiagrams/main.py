@@ -22,7 +22,8 @@ class Diagram:
         node.fontname = "Verdana"
         node.color = "red3"
         node.fontcolor = "red3"
-        node.label = "warning: \n" + message
+        node.label = "cuidado: \n" + message
+        print "Cuidado: " + message
 
     def read(self, input_file_name):
         "Lee un modelo de clases desde un archivo de texto."

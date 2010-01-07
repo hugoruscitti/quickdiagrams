@@ -5,6 +5,7 @@ Cliente
     nombre
     plan
     domicilio
+    pagar:
 
 Producto
     nombre

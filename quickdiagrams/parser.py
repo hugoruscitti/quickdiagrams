@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import re
 
+ARROWS = ["->", "<-", "<>->", "<-<>", "<>-", "<\*>-", "-<>", "-<\*>"]
 
 class RelationFactory:
     
@@ -9,6 +10,7 @@ class RelationFactory:
 
     def is_relation(self, string):
         "Informa si una determinada cadena parece una relación."
+
 
         for pattern, describe in self.patterns:
             if pattern.match(string):
@@ -27,13 +29,21 @@ class RelationFactory:
         pattern_strings = [
             "from_counter from_name description to_counter to_name",
             "from_counter from_name to_counter to_name",
-            "from_name arrow_or_description to_name",
             "from_name to_name",
         ]
 
         re_patters = [(re.sub('\w+', '\S+', line), line) for line in pattern_strings]
-        return [(re.compile("^" + pattern + "$", re.IGNORECASE), line) 
+        patterns = [(re.compile("^" + pattern + "$", re.IGNORECASE), line) 
                     for (pattern, line) in re_patters]
+        
+
+        #rels = "|".join(ARROWS)
+        rels = "|".join(ARROWS)
+        line = u"\w+ (%s) \w+" %(rels)
+
+        patterns.append((re.compile(line), "from_name arrow_description to_name"))
+
+        return patterns
 
 
 class Relation:
@@ -56,7 +66,7 @@ class Relation:
         "Define el valor de los atributos que cita la relación."
 
         for name, value in zip(describe.split(), line.split()):
-            if name == "arrow_or_description":
+            if name == "arrow_description":
                 self._set_arrow_type(value)
             else:
                 setattr(self, name, value)
@@ -148,6 +158,9 @@ def is_empty(line):
 def is_comment(line):
     return line.startswith('#') or line.startswith('//')
 
+def is_invalid_syntax(line):
+    return re.search(r"^\s*(\w|:|\(|\)|\.|\ |ñ|Ñ|á|é|í|ó|ú|Á|É|Í|Ó)*$", line) or re.search("^\s*--+$", line)
+
 
 # Enumeraciones
 STATE_STARTING, STATE_POPULATING = range(2)
@@ -165,12 +178,16 @@ def create_models_and_relationships_from_list(list):
     actual_father = []
     minimum_width = 4
 
-    for line in list:
+    for number_line, line in enumerate(list):
         if not is_empty(line) or is_comment(line):
             continue
 
         if relation_factory.is_relation(line):
             relationships.append(relation_factory.create_relation(line))
+            continue
+
+        if not is_invalid_syntax(line):
+            print "Error de sintaxis, linea %d: '%s'" %(number_line + 1, line.rstrip())
             continue
 
         identation_column = get_identation_width(line)
