@@ -123,7 +123,12 @@ class Application:
         return self.buffer.get_text(start, end).split('\n')
 
     def update_message_bar(self, messages_to_show):
-        print messages_to_show
+        
+        if messages_to_show:
+            self.view.statusbar.push(0, messages_to_show[0])
+        else:
+            # Sin errores
+            self.view.statusbar.push(0, "")
 
     def set_model_text(self, text):
         self.buffer.set_text(text)
