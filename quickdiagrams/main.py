@@ -6,24 +6,27 @@ import pac_parser
 class Diagram:
     """Representa un diagrama completo."""
 
-    def __init__(self):
+    def __init__(self, disable_visible_warnings=False):
         self.content = []
         self.digraph = yapgvb.Digraph()
         self.nodes = {}
         self.digraph.rankdir = "BT"
         self.digraph.nodesep = 1
+        self.disable_visible_warnings = disable_visible_warnings
 
     def add_warning_message(self, message):
         "Mustra un mensaje de advertencia en el diagrama."
 
-        node = self.digraph.add_node(message)
-        node.shape = 'record'
-        node.fontsize = 10
-        node.fontname = "Verdana"
-        node.color = "red3"
-        node.fontcolor = "red3"
-        node.label = "cuidado: \n" + message
         print "Cuidado: " + message
+
+        if not self.disable_visible_warnings:
+            node = self.digraph.add_node(message)
+            node.shape = 'record'
+            node.fontsize = 10
+            node.fontname = "Verdana"
+            node.color = "red3"
+            node.fontcolor = "red3"
+            node.label = "cuidado: \n" + message
 
     def read(self, input_file_name):
         "Lee un modelo de clases desde un archivo de texto."
@@ -125,7 +128,7 @@ class Diagram:
                 from_node = self.get_node_from_name(rel.from_name)
                 to_node = self.get_node_from_name(rel.to_name)
             except KeyError, msg:
-                msg_error = "No se encuentra la clase '%s' al crear una relación."
+                msg_error = "No se encuentra la clase %s al crear una relación."
                 self.add_warning_message(msg_error %(msg))
                 return
 

@@ -104,7 +104,7 @@ class Application:
         self.view.window.set_title(title)
 
     def draw_diagram(self):
-        self.diagram = quickdiagrams.Diagram()
+        self.diagram = quickdiagrams.Diagram(disable_visible_warnings=True)
         text_model = self.get_model_text_as_list()
         self.diagram.read_from_string(text_model)
         self.diagram.save(TEMPORALY_FILEOUTPUT, 'png', disable_output=True)
