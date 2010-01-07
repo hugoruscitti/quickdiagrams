@@ -10,9 +10,9 @@ import quickdiagrams
 import dialogs
 import gtkcodebuffer
 import drawing_thread
-import Queue
 import gobject
 import pango
+import lifoqueue
 
 
 gobject.threads_init()
@@ -35,7 +35,7 @@ class Application:
         self._create_view(self.ui)
         self._create_buffer()
 
-        self.queue = Queue.LifoQueue()
+        self.queue = lifoqueue.LifoQueue()
         self.drawing_thread = drawing_thread.DrawingThread(self, self.queue)
         self.drawing_thread.start()
 
