@@ -13,11 +13,12 @@ class Diagram:
         self.digraph.rankdir = "BT"
         self.digraph.nodesep = 1
         self.disable_visible_warnings = disable_visible_warnings
+        self.error_messages = []
 
     def add_warning_message(self, message):
         "Mustra un mensaje de advertencia en el diagrama."
 
-        print "Cuidado: " + message
+        self.error_messages.append("Cuidado: " + message)
 
         if not self.disable_visible_warnings:
             node = self.digraph.add_node(message)
@@ -47,7 +48,7 @@ class Diagram:
     def read_from_string(self, filecontent):
         "Lee un modelo de clases desde una lista de cadenas."
 
-        models, relationships = \
+        models, relationships, errors = \
             parser.create_models_and_relationships_from_list(filecontent)
 
         # TODO: que la funcion reporte solamente la lista vacia en lugar de
@@ -60,6 +61,9 @@ class Diagram:
 
         self.create_hierarchy_relationships()
         self.create_explicit_relationships(relationships)
+
+        for x in errors:
+            self.error_messages.append(x)
 
     def add_model(self, model):
         "Genera un nodo de clase para el modelo indicado."
@@ -150,6 +154,14 @@ class Diagram:
 
         if not disable_output:
             print "Creating file: %s" %(filename)
+
+            for message in self.error_messages:
+                print  message
+
+        return self.error_messages
+
+
+
         
 
 if __name__ == '__main__':

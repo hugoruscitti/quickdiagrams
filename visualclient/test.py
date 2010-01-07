@@ -107,8 +107,9 @@ class Application:
         self.diagram = quickdiagrams.Diagram(disable_visible_warnings=True)
         text_model = self.get_model_text_as_list()
         self.diagram.read_from_string(text_model)
-        self.diagram.save(TEMPORALY_FILEOUTPUT, 'png', disable_output=True)
+        errors = self.diagram.save(TEMPORALY_FILEOUTPUT, 'png', disable_output=True)
         self.update_image()
+        self.update_message_bar(errors)
 
     def update_image(self):
         gobject.idle_add(self.update_image_callback)
@@ -120,6 +121,9 @@ class Application:
     def get_model_text_as_list(self):
         start, end = self.buffer.get_bounds()
         return self.buffer.get_text(start, end).split('\n')
+
+    def update_message_bar(self, messages_to_show):
+        print messages_to_show
 
     def set_model_text(self, text):
         self.buffer.set_text(text)

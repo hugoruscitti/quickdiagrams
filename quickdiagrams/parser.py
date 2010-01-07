@@ -170,6 +170,7 @@ def create_models_and_relationships_from_list(list):
     previous_identation_column = 0
     relation_factory = RelationFactory()
     relationships = []
+    errors = []
 
     previous_line = None
     state = STATE_STARTING
@@ -187,7 +188,7 @@ def create_models_and_relationships_from_list(list):
             continue
 
         if not is_invalid_syntax(line):
-            print "Error de sintaxis, linea %d: '%s'" %(number_line + 1, line.rstrip())
+            errors.append("Error de sintaxis, linea %d: '%s'" %(number_line + 1, line.rstrip()))
             continue
 
         identation_column = get_identation_width(line)
@@ -252,4 +253,4 @@ def create_models_and_relationships_from_list(list):
             model = Model(previous_line, None)
 
     models.append(model)
-    return models, relationships
+    return models, relationships, errors
