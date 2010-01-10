@@ -126,9 +126,11 @@ class Application:
         
         if messages_to_show:
             self.view.statusbar.push(0, messages_to_show[0])
+            self.view.statusimage.set_from_file('images/dialog-warning.png')
         else:
             # Sin errores
             self.view.statusbar.push(0, "")
+            self.view.statusimage.set_from_file('images/applications-development.png')
 
     def set_model_text(self, text):
         self.buffer.set_text(text)
