@@ -47,6 +47,7 @@ class Application:
         self.last_lines_in_model = 0
         self.set_buffer_has_modified(False)
         self.document_name = ""
+        self.view.statusimage.set_from_file('images/status_warning.png')
 
     def _create_buffer(self):
         emph  = gtkcodebuffer.String(r"\*", r"\*", style="datatype")
@@ -131,12 +132,12 @@ class Application:
     def update_message_bar(self, messages_to_show):
         
         if messages_to_show:
-            self.view.statusbar.push(0, messages_to_show[0])
-            self.view.statusimage.set_from_file('images/dialog-warning.png')
+            self.view.statusbar.set_text(messages_to_show[0])
+            self.view.statusimage.show()
         else:
             # Sin errores
-            self.view.statusbar.push(0, "")
-            self.view.statusimage.set_from_file('images/applications-development.png')
+            self.view.statusbar.set_text("")
+            self.view.statusimage.hide()
 
     def set_model_text(self, text):
         self.buffer.set_text(text)
