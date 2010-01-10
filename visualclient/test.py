@@ -48,6 +48,7 @@ class Application:
         self.set_buffer_has_modified(False)
         self.document_name = ""
         self.view.statusimage.set_from_file('images/status_warning.png')
+        self.view.statusimage.hide()
 
     def _create_buffer(self):
         emph  = gtkcodebuffer.String(r"\*", r"\*", style="datatype")
@@ -181,9 +182,6 @@ class Application:
         self.set_buffer_has_modified(False)
 
     def export_to(self, filename):
-        if sys.platform == "win32":
-            filename = '"%s"' %(filename)
-
         self.diagram = quickdiagrams.Diagram()
         text_model = self.get_model_text_as_list()
         self.diagram.read_from_string(text_model)
