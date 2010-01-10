@@ -40,6 +40,7 @@ class Application:
         self.drawing_thread.start()
 
         self.buffer.connect("changed", self.custom_on_buffer__changed)
+
         background_color = gtk.gdk.color_parse("white")
         self.view.eventbox.modify_bg(gtk.STATE_NORMAL, background_color)
         self.request_draw_to_drawing_thread()
@@ -93,6 +94,10 @@ class Application:
 
         self.set_buffer_has_modified(True)
 
+    def update_status_indicator_line(self, w, iter, w3):
+        line = iter.get_line()
+        self.view.line.set_text("Cursor en la linea: %d" %(line))
+
     def set_buffer_has_modified(self, state):
         self.has_modified = state
         title = "quickdiagrams"
@@ -110,6 +115,7 @@ class Application:
         errors = self.diagram.save(TEMPORALY_FILEOUTPUT, 'png', disable_output=True)
         self.update_image()
         self.update_message_bar(errors)
+        self.buffer.connect("mark-set", self.update_status_indicator_line)
 
     def update_image(self):
         gobject.idle_add(self.update_image_callback)
