@@ -12,6 +12,7 @@ sys.path.insert(0, '../')
 import quickdiagrams
 
 URL = "http://www.diagramadeclases.com.ar"
+DEST_DIR = 'static/tmp'
 
 urls = (
     '/', 'HomePage',
@@ -25,6 +26,16 @@ this_dir = os.path.dirname(os.path.abspath(__file__))
 render = web.template.render(os.path.join(this_dir, 'templates/'))
 app = web.application(urls, globals())
 
+def check_if_can_save_files():
+    try:
+        f = open('%s/test.txt' %DEST_DIR, 'wt')
+        f.close()
+    except IOError, e:
+        print "You can't save in DEST_DIR ('%s')" %(DEST_DIR)
+        print e
+        return
+    
+    print "checking permissions in '%s': OK" %(DEST_DIR)
 
 class HomePage:
 
@@ -67,7 +78,7 @@ class DrawCommand:
 
         # Genera el archivo de salida.
         t = time.time()
-        file_output = "static/tmp/%d_%s.png" %(t, uuid.uuid4())
+        file_output = "%s/%d_%s.png" %(DEST_DIR, t, uuid.uuid4())
         full_path = os.path.join(this_dir, file_output)
         diagram.save(full_path, 'png', disable_output=True)
 
@@ -150,6 +161,7 @@ class DisplayCommand(DrawCommand):
 
 
 if __name__ == '__main__':
+    check_if_can_save_files()
     print "Starting web server at:\n\t",
     application = web.application(urls, globals())
     application.run()
