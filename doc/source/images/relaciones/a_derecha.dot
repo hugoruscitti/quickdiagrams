@@ -2,6 +2,6 @@ digraph G
 {
     graph [rankdir=LR]
     node [shape=box, fontsize="10", fontcolor=grey, color=white]
-    edge [fontsize="10"]
+    edge [arrowhead=empty, fontsize="10"]
     A -> B
 }
