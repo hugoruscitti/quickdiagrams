@@ -6,7 +6,7 @@ from optparse import OptionParser
 import quickdiagrams
 
 parser = OptionParser()
-parser.add_option("-i", "--input",  dest="input", help="file input", metavar="FILE")
+parser.add_option("-i", "--input",  dest="input", help="file input or python module name", metavar="FILE")
 parser.add_option("-o", "--output", dest="output", help="file output", metavar="FILE")
 parser.add_option("-d", "--debug",  dest="debug", default=False, help="sets debug mode")
 parser.add_option("-f", "--format", dest="format", default='png', help="example: png, svg ...")
@@ -15,7 +15,7 @@ parser.add_option("-f", "--format", dest="format", default='png', help="example:
 
 
 if not options.input and not args:
-    print "You must provide a input filename (-i argument)."
+    print "You must provide a input filename or a python name module (-i argument)."
     print "Try '%s --help' for more information." %(sys.argv[0])
     sys.exit(1)
 else:
@@ -29,13 +29,18 @@ if not options.output:
     name_without_extension = os.path.splitext(options.input)[0]
     options.output = "%s.%s" %(name_without_extension, options.format)
 
+diagram = quickdiagrams.main.Diagram()
 
 if not os.path.exists(options.input):
-    print "Can't read the '%s' file (maybe don't exists)" %(options.input)
-    sys.exit(1)
+    if quickdiagrams.genqd.is_python_module_name(options.input):
+        file_handler = quickdiagrams.genqd.create_file_handler(options.input)
+        diagram.read_from_file_handler(file_handler)
+    else:
+        print "Can't read the '%s' file or module name (maybe don't exists)" %(options.input)
+        sys.exit(1)
+else:
+    diagram.read(options.input)
 
-diagram = quickdiagrams.main.Diagram()
-diagram.read(options.input)
 diagram.save(options.output, options.format)
 
 sys.exit(0)

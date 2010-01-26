@@ -12,21 +12,23 @@ Licencia: GNU General Public License v3
 
 import os, sys
 import pyclbr
+import StringIO
 
 INCLUIR_METODOS = True
 
-def emitir(cls, indent):
-    print '%s%s' % ('    ' * indent, cls.name)
+def emitir(file_handler, cls, indent):
+    file_handler.write('%s%s\n' % ('    ' * indent, cls.name))
     methods = [m for m in cls.methods if not m[0] == '_']
     if INCLUIR_METODOS and methods:
         for method in methods:
-            print '%s%s()' % ('    ' * (indent+1), method)
+            file_handler.write('%s%s()\n' % ('    ' * (indent+1), method))
     else:
-        print '%s%s' % ('    ' * (indent+1), '_')
-    print
+        file_handler.write('%s%s\n' % ('    ' * (indent+1), '_'))
 
-def procesar_cls(cls, clsdict, hm, indent=0):
-    emitir(cls, indent)
+    file_handler.write("\n")
+
+def procesar_cls(file_handler, cls, clsdict, hm, indent=0):
+    emitir(file_handler, cls, indent)
     base_name = cls.name
     # enumero las subclases *directas* de esta, que son las que
     # se muestran indentadas.
@@ -41,9 +43,9 @@ def procesar_cls(cls, clsdict, hm, indent=0):
                 if otra != base_name:
                     hm.append((subcls.name, otra))
             del clsdict[name]
-            procesar_cls(subcls, clsdict, hm, indent+1)
+            procesar_cls(file_handler, subcls, clsdict, hm, indent+1)
 
-def procesar_modulo(modname):
+def procesar_modulo(file_handler, modname):
     # para guardar las declaraciones de herencia multiple pendientes: (derivada, base)
     hm = []
     path, name = os.path.split(modname)
@@ -56,13 +58,23 @@ def procesar_modulo(modname):
     for cls in clslist:
         if cls.name not in clsdict:
             continue
-        procesar_cls(cls, clsdict, hm)
+        procesar_cls(file_handler, cls, clsdict, hm)
         # herencia multiple pendiente
         # (trato de mostrarla tan pronto como sea posible)
         while hm:
             subcls, base = hm.pop(0)
-            print "%s -> %s" % (subcls, base)
-            print
+            file_handler.write("%s -> %s\n" % (subcls, base))
+
+
+def is_python_module_name(filename):
+    path, name = os.path.split(filename)
+    try:
+        clsdict = pyclbr.readmodule(name, path)
+    except ImportError:
+        return False
+
+    return True
+
 
 def main():
     for name in sys.argv[1:]:
@@ -71,3 +83,14 @@ def main():
 
 if __name__ == '__main__':
     sys.exit(main())
+
+
+def create_file_handler(name):
+    "Simula un nuevo archivo para que lo lea quickdiagrams."
+
+    new_file = StringIO.StringIO()
+    procesar_modulo(new_file, name)
+
+    new_file.flush()
+    new_file.seek(0)
+    return new_file

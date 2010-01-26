@@ -37,6 +37,9 @@ class Diagram:
         else:
             file_handler = open(input_file_name, 'rt')
 
+        self.read_from_file_handler(file_handler)
+
+    def read_from_file_handler(self, file_handler):
         filecontent = file_handler.readlines()
         self.read_from_string(filecontent)
         file_handler.close()
