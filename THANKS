@@ -1,3 +1,7 @@
 Pablo Codeiro / segfault <cutrix2k@gmail.com>
     Escribió la extensión para poder importar código directamente desde
     archivo .pac de Dolphin Smalltalk.
+
+Gabriel A. Genellina
+    Escribió un modulo para que quickclassdiagram pueda inspeccionar
+    módulos de python y crear diagramas de clase a partir de ellos.
