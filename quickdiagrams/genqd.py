@@ -92,6 +92,17 @@ if __name__ == '__main__':
 def create_file_handler(name, path=None):
     "Simula un nuevo archivo para que lo lea quickdiagrams."
 
+    if name.endswith('.py'):    # it's like a python filename
+        name = name[:-3]
+
+    items = name.rsplit('/', 1)
+
+    if len(items) == 2:
+        path, name = items
+    else:
+        name = items
+        path = None
+
     new_file = StringIO.StringIO()
     procesar_modulo(new_file, name, path)
 

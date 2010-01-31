@@ -33,16 +33,7 @@ diagram = quickdiagrams.main.Diagram()
 
 
 if options.input.endswith('.py'):    # it's like a python filename
-    options.input = options.input[:-3]
-    items = options.input.rsplit('/', 1)
-
-    if len(items) == 2:
-        path, modulename = items
-    else:
-        modulename = items
-        path = None
-
-    file_handler = quickdiagrams.genqd.create_file_handler(modulename, path)
+    file_handler = quickdiagrams.genqd.create_file_handler(options.input)
     diagram.read_from_file_handler(file_handler)
 
 elif not os.path.exists(options.input):         # is a module name ?

@@ -176,7 +176,11 @@ class Application:
         self.set_buffer_has_modified(False)
 
     def open_file(self, filename):
-        file = open(filename, "rt")
+        if filename.endswith('.py'):
+            file = quickdiagrams.genqd.create_file_handler(filename)
+        else:
+            file = open(filename, "rt")
+
         self.set_model_text(file.read())
         file.close()
         self.set_buffer_has_modified(False)
@@ -195,7 +199,8 @@ class Application:
     # Callbacks
     def on_open__clicked(self, widget):
         pattern = ("ClassDiagram *.sc", "*.sc")
-        dialog = dialogs.OpenDialog(self.view.window, pattern, self.open_file)
+        pattern_py = ("Python files *.py", "*.py")
+        dialog = dialogs.OpenDialog(self.view.window, pattern, self.open_file, pattern_py)
         dialog.run()
 
     def on_window__delete_event(self, widget, extra):

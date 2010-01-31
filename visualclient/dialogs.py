@@ -44,12 +44,12 @@ class SaveDialog:
 
 class OpenDialog:
 
-    def __init__(self, parent, pattern, callback):
+    def __init__(self, parent, pattern, callback, extra_pattern=None):
         self.parent = parent
-        self._create_dialog(pattern)
+        self._create_dialog(pattern, extra_pattern)
         self.callback = callback
 
-    def _create_dialog(self, pattern):
+    def _create_dialog(self, pattern, extra_pattern=None):
         buttons = (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL,
                 gtk.STOCK_OPEN, gtk.RESPONSE_OK)
         action = gtk.FILE_CHOOSER_ACTION_SAVE
@@ -64,6 +64,13 @@ class OpenDialog:
         filter.set_name(label)
         filter.add_pattern(mask)
         dialog.add_filter(filter)
+
+        if extra_pattern:
+            filter = gtk.FileFilter()
+            label, mask = extra_pattern
+            filter.set_name(label)
+            filter.add_pattern(mask)
+            dialog.add_filter(filter)
 
         # All files filter (*)
         filter = gtk.FileFilter()
