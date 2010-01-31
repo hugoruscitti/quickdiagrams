@@ -45,11 +45,15 @@ def procesar_cls(file_handler, cls, clsdict, hm, indent=0):
             del clsdict[name]
             procesar_cls(file_handler, subcls, clsdict, hm, indent+1)
 
-def procesar_modulo(file_handler, modname):
+def procesar_modulo(file_handler, modname, path):
     # para guardar las declaraciones de herencia multiple pendientes: (derivada, base)
     hm = []
-    path, name = os.path.split(modname)
-    clsdict = pyclbr.readmodule(name, [path])
+    #path, name = os.path.split(modname)
+    if path:
+        clsdict = pyclbr.readmodule(modname, [path])
+    else:
+        clsdict = pyclbr.readmodule(modname)
+
     clslist = clsdict.values()
     for cls in clslist:
         cls.super = sorted(s.name if hasattr(s, 'name') else s for s in cls.super)
@@ -85,11 +89,11 @@ if __name__ == '__main__':
     sys.exit(main())
 
 
-def create_file_handler(name):
+def create_file_handler(name, path=None):
     "Simula un nuevo archivo para que lo lea quickdiagrams."
 
     new_file = StringIO.StringIO()
-    procesar_modulo(new_file, name)
+    procesar_modulo(new_file, name, path)
 
     new_file.flush()
     new_file.seek(0)

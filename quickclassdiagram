@@ -31,14 +31,29 @@ if not options.output:
 
 diagram = quickdiagrams.main.Diagram()
 
-if not os.path.exists(options.input):
+
+if options.input.endswith('.py'):    # it's like a python filename
+    options.input = options.input[:-3]
+    items = options.input.rsplit('/', 1)
+
+    if len(items) == 2:
+        path, modulename = items
+    else:
+        modulename = items
+        path = None
+
+    file_handler = quickdiagrams.genqd.create_file_handler(modulename, path)
+    diagram.read_from_file_handler(file_handler)
+
+elif not os.path.exists(options.input):         # is a module name ?
     if quickdiagrams.genqd.is_python_module_name(options.input):
         file_handler = quickdiagrams.genqd.create_file_handler(options.input)
         diagram.read_from_file_handler(file_handler)
     else:
-        print "Can't read the '%s' file or module name (maybe don't exists)" %(options.input)
-        sys.exit(1)
-else:
+        if not os.path.exists(options.input):
+            print "Can't read the '%s' file or module name (maybe don't exists)" %(options.input)
+            sys.exit(1)
+else:                                    # is path to other file type
     diagram.read(options.input)
 
 diagram.save(options.output, options.format)
