@@ -82,7 +82,7 @@ y obtendrá una referecia de los comandos que puede utilizar::
 Requerimientos
 --------------
 
-    * python-yapgvb
+    * pygraphviz
     * graphviz
 
 
