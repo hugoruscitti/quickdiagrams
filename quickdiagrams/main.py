@@ -95,14 +95,18 @@ class Diagram:
         # TODO: delegar en otro método e incluir casos como Pez ~= peces.
         # ver diveintopython
         name = name.lower()
+        all_names = {}
 
-        if not self.nodes.has_key(name):
+        for x in self.nodes.keys():
+            all_names[x.lower()] = self.nodes[x][1]
+
+        if not all_names.has_key(name):
             name_without_last_word = name[:-1]
 
-            if self.nodes.has_key(name_without_last_word):
-                return self.nodes[name_without_last_word][1]
+            if all_names.has_key(name_without_last_word):
+                return all_names[name_without_last_word]
         
-        return self.nodes[name][1]
+        return all_names[name]
 
     def create_hierarchy_relationships(self):
         for key, value in self.nodes.items():
@@ -133,7 +137,7 @@ class Diagram:
                 self.add_warning_message(msg_error %(msg))
                 return
 
-            self.create_relation(rel.from_name, rel.to_name, rel)
+            self.create_relation(from_node, to_node, rel)
 
     def create_relation(self, from_node, to_node, rel):
         edge = self.digraph.add_edge(from_node, to_node, arrowtail='arrowhead',

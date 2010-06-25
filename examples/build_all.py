@@ -4,6 +4,7 @@ import quickdiagrams
 input_files = [x for x in os.listdir('./') if x.endswith('sc')]
 
 for file in input_files:
+    print "Procesando:", file
     diagram = quickdiagrams.Diagram()
     diagram.read(file)
 

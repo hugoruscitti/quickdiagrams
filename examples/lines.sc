@@ -4,10 +4,10 @@ Usuario
 Nombre
     string
 
-Teléfono
+Telefono
     numero
 
 
-Usuario -> Teléfono
-Usuario <- Teléfono
+Usuario -> Telefono
+Usuario <- Telefono
 Usuario <-<> nombres
