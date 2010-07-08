@@ -159,7 +159,7 @@ def is_comment(line):
     return line.startswith('#') or line.startswith('//')
 
 def is_invalid_syntax(line):
-    return re.search(r"^\s*(\w|:|\(|\)|,|\.|\ |ñ|Ñ|á|é|í|ó|ú|Á|É|Í|Ó)*$", line) or re.search("^\s*--+$", line)
+    return re.search(r"^\s*(\w|:|\(|\)|,|\.|\ |ñ|\+|-|#|Ñ|á|é|í|ó|ú|Á|É|Í|Ó)*$", line) or re.search("^\s*--+$", line)
 
 
 # Enumeraciones
