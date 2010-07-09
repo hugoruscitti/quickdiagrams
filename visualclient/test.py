@@ -49,6 +49,7 @@ class Application:
         self.document_name = ""
         self.view.statusimage.set_from_file('images/status_warning.png')
         self.view.statusimage.hide()
+        self.last_filename_assigned = None
 
     def _create_buffer(self):
         emph  = gtkcodebuffer.String(r"\*", r"\*", style="datatype")
@@ -174,6 +175,7 @@ class Application:
         file.write(content)
         file.close()
         self.set_buffer_has_modified(False)
+        self.last_filename_assigned = filename
 
     def open_file(self, filename):
         if filename.endswith('.py'):
@@ -184,6 +186,7 @@ class Application:
         self.set_model_text(file.read())
         file.close()
         self.set_buffer_has_modified(False)
+        self.last_filename_assigned = filename
 
     def export_to(self, filename):
         self.diagram = quickdiagrams.Diagram()
@@ -230,6 +233,25 @@ class Application:
     def on_about__clicked(self, widget):
         self.view.aboutdialog.run()
         self.view.aboutdialog.hide()
+
+    def on_item_about__activate(self, widget):
+        self.on_about__clicked(widget)
+
+    def on_item_quit__activate(self, widget):
+        self.on_window__delete_event(widget, None)
+
+    def on_item_open__activate(self, widget):
+        self.on_open__clicked(widget)
+
+    def on_item_save_as__activate(self, widget):
+        self.on_save__clicked(widget)
+
+    def on_item_save__activate(self, widget):
+        if self.last_filename_assigned:
+            self.save_to(self.last_filename_assigned)
+        else:
+            self.on_save__clicked(widget)
+
 
     def show_confirm_dialog(self):
         leave = self.view.leave
