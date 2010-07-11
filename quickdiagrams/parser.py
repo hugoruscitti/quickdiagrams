@@ -73,9 +73,9 @@ class Relation:
 
     def _set_arrow_type(self, value):
         if value == "->":
-            self.arrowtail = "empty"
+            self.arrowtail = "normal"
         elif value == "<-":
-            self.arrowhead = "empty"
+            self.arrowhead = "normal"
         elif value == "<>->":
             self.arrowhead = "odiamond"
             self.arrowtail = "normal"
