@@ -30,6 +30,7 @@ class RelationFactory:
             "from_counter from_name description to_counter to_name",
             "from_counter from_name to_counter to_name",
             "from_name to_name",
+            "from_name description to_name",
         ]
 
         re_patters = [(re.sub('\w+', '\S+', line), line) for line in pattern_strings]
@@ -37,7 +38,6 @@ class RelationFactory:
                     for (pattern, line) in re_patters]
         
 
-        #rels = "|".join(ARROWS)
         rels = "|".join(ARROWS)
         line = u"\w+ (%s) \w+" %(rels)
 
