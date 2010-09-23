@@ -45,14 +45,20 @@ def procesar_cls(file_handler, cls, clsdict, hm, indent=0):
             del clsdict[name]
             procesar_cls(file_handler, subcls, clsdict, hm, indent+1)
 
-def procesar_modulo(file_handler, modname, path):
+def procesar_modulo(file_handler, modulenames, path):
     # para guardar las declaraciones de herencia multiple pendientes: (derivada, base)
     hm = []
     #path, name = os.path.split(modname)
-    if path:
-        clsdict = pyclbr.readmodule(modname, [path])
-    else:
-        clsdict = pyclbr.readmodule(modname)
+
+    clsdict = {}
+
+    for modname in modulenames:
+        if path:
+            new_classes = pyclbr.readmodule(modname, [path])
+        else:
+            new_classes = pyclbr.readmodule(modname)
+
+        clsdict.update(new_classes)
 
     clslist = clsdict.values()
     for cls in clslist:

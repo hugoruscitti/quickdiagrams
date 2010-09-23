@@ -5,4 +5,5 @@ Telefono
     numero
 
 
-Usuario -> Telefono
+Usuario -<*> Telefono
+Usuario -<> Telefono

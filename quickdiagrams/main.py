@@ -8,10 +8,8 @@ class Diagram:
 
     def __init__(self, disable_visible_warnings=False):
         self.content = []
-        self.digraph = pgv.AGraph(strict=False, directed=True)
+        self.digraph = pgv.AGraph(strict=False, directed=True, rankdir="BT", nodesep="0.75")
         self.nodes = {}
-        self.digraph.rankdir = "BT"
-        self.digraph.nodesep = 1
         self.disable_visible_warnings = disable_visible_warnings
         self.error_messages = []
 

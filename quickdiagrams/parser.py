@@ -66,13 +66,14 @@ class Relation:
         "Define el valor de los atributos que cita la relación."
 
         for name, value in zip(describe.split(), line.split()):
-            if name == "arrow_description":
+            if name == "description":
                 self._set_arrow_type(value)
             else:
                 setattr(self, name, value)
 
     def _set_arrow_type(self, value):
         if value == "->":
+            print "Linea normal"
             self.arrowtail = "normal"
         elif value == "<-":
             self.arrowhead = "normal"

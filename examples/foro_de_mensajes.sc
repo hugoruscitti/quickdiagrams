@@ -16,5 +16,4 @@ Mensaje
     titulo
 
 
-1 Usuario * mensajes
-1 foro tiene muchos mensajes
+1 Usuario tiene_varios * mensajes
