@@ -91,8 +91,11 @@ class Relation:
             self.arrowtail = "odiamond"
         elif value == "-<*>":
             self.arrowtail = "diamond"
+        elif value == "-":
+            pass
         else:
             self.description = value
+            self.arrowtail = "normal"
 
 
 class Model:
