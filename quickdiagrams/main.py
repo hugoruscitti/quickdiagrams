@@ -115,7 +115,7 @@ class Diagram:
                 #superclass_node = self.get_node_from_name(superclass)
                 edge = self.digraph.add_edge(node, superclass, 
                         arrowhead='onormal',
-                        arrowtail = 'none')
+                        arrowtai='none')
 
     def create_explicit_relationships(self, relationships):
         """Genera las relaciones que el usuario indica manualmente.
@@ -138,10 +138,16 @@ class Diagram:
             self.create_relation(from_node, to_node, rel)
 
     def create_relation(self, from_node, to_node, rel):
-        edge = self.digraph.add_edge(from_node, to_node, arrowtail='arrowhead',
-                label=rel.description, fontsize='10', fontname='Verdana',
-                taillabel=rel.from_counter, headlabel=rel.to_counter, 
-                arrowhead=rel.arrowtail)
+
+        edge = self.digraph.add_edge(from_node, to_node, 
+                arrowhead=rel.arrowtail,
+                arrowtail=rel.arrowhead,
+                dir='both',
+                label=rel.description,
+                fontsize='10', 
+                fontname='Verdana',
+                taillabel=rel.from_counter, 
+                headlabel=rel.to_counter)
 
     def save(self, filename, format, disable_output=False):
         self.digraph.layout(prog='dot')
