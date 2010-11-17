@@ -3,6 +3,6 @@ digraph G
     graph [nodesep="0.1", rankdir=LR];
     node [shape=box]
     node [shape=box, fontsize="10", fontcolor=grey, color=white]
-    edge [fontsize="10", arrowtail="none", arrowhead="none"]
+    edge [fontsize="10", arrowtail="normal", arrowhead="none"]
     A -> B [arrowhead=none]
 }

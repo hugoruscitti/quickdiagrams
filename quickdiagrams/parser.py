@@ -69,6 +69,7 @@ class Relation:
             if name == "description":
                 self._set_arrow_type(value)
             else:
+                self.arrowtail = "normal"
                 setattr(self, name, value)
 
     def _set_arrow_type(self, value):
@@ -92,7 +93,7 @@ class Relation:
         elif value == "-<*>":
             self.arrowtail = "diamond"
         elif value == "-":
-            pass
+            self.arrowhead = "normal"
         else:
             self.description = value
             self.arrowtail = "normal"
