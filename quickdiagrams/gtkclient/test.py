@@ -2,6 +2,7 @@
 # Copyright: Hugo Ruscitti <hugoruscitti@gmail.com>
 # License: GPLv3
 
+import os
 import gtk
 import re
 import sys
@@ -30,7 +31,9 @@ class View(object):
 class Application:
 
     def __init__(self):
-        self.ui = gtk.glade.XML('ui.glade')
+        path = os.path.dirname(os.path.abspath(__file__))
+        file_path = os.path.join(path, 'ui.glade')
+        self.ui = gtk.glade.XML(file_path)
         self._connect_callbacks(self.ui)
         self._create_view(self.ui)
         self._create_buffer()
