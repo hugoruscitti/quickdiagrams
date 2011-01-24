@@ -7,6 +7,6 @@ setup(name='quickdiagrams',
   description='A text-to-class_diagram conversion tool.',
   author='Hugo Ruscitti',
   author_email='hugoruscitti@gmail.com',
-  packages=['quickdiagrams'],
-  scripts=['quickclassdiagram'],
+  packages=['quickdiagrams', 'quickclassdiagrams.gtkclient'],
+  scripts=['bin/quickclassdiagram'],
   )
