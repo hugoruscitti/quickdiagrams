@@ -43,21 +43,26 @@ class HomePage:
 
         code = """
 Usuario
-	nick
-	email
-	recordarContraseña()
+    nick
+    email
+    mensajes
+    --------
+    recordarContraseña
 
 Foro
-	nombre
+    nombre
+    mensajes
+    postear:
 
-	ForoPrivado
-		permisos
+    ForoPrivado
+        postear:
 
 Mensaje
-	titulo
+    ------
+    cantCaracteres
 
-1 Usuario * mensajes
-1 foro tiene * mensajes
+Usuario mensajes mensajes
+foro mensajes mensajes
 """
         return render.index(code, web.ctx.homedomain)
 

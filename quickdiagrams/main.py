@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import pygraphviz as pgv
-import parser
+import parserlocal as parser
 import pac_parser
 
 class Diagram:

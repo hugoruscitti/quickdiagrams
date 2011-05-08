@@ -17,16 +17,11 @@ quickdiagrams/gtkclient/COPYING
 quickdiagrams/gtkclient/__init__.py
 quickdiagrams/gtkclient/__init__.pyc
 quickdiagrams/gtkclient/dialogs.py
-quickdiagrams/gtkclient/dialogs.pyc
 quickdiagrams/gtkclient/drawing_thread.py
-quickdiagrams/gtkclient/drawing_thread.pyc
 quickdiagrams/gtkclient/gtkcodebuffer.py
-quickdiagrams/gtkclient/gtkcodebuffer.pyc
 quickdiagrams/gtkclient/lifoqueue.py
-quickdiagrams/gtkclient/lifoqueue.pyc
 quickdiagrams/gtkclient/logo.ico
 quickdiagrams/gtkclient/test.py
-quickdiagrams/gtkclient/test.pyc
 quickdiagrams/gtkclient/ui.glade
 quickdiagrams/gtkclient/images/applications-development.png
 quickdiagrams/gtkclient/images/applications-graphics.png

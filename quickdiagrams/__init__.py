@@ -1,5 +1,5 @@
 from main import Diagram
-import parser
+import parserlocal as parser
 import genqd
 import gtkclient
 
