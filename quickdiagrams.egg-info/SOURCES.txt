@@ -7,7 +7,6 @@ quickdiagrams/__init__.py
 quickdiagrams/genqd.py
 quickdiagrams/main.py
 quickdiagrams/pac_parser.py
-quickdiagrams/parser.py
 quickdiagrams.egg-info/PKG-INFO
 quickdiagrams.egg-info/SOURCES.txt
 quickdiagrams.egg-info/dependency_links.txt
@@ -15,7 +14,6 @@ quickdiagrams.egg-info/requires.txt
 quickdiagrams.egg-info/top_level.txt
 quickdiagrams/gtkclient/COPYING
 quickdiagrams/gtkclient/__init__.py
-quickdiagrams/gtkclient/__init__.pyc
 quickdiagrams/gtkclient/dialogs.py
 quickdiagrams/gtkclient/drawing_thread.py
 quickdiagrams/gtkclient/gtkcodebuffer.py
